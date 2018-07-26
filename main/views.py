@@ -65,7 +65,7 @@ class Stream(FormView):
         response = client.create_call({
             "to": [ {"type": "phone", "number": "91{}".format(subscriber)} for subscriber in subscribers ],
             "from": {"type": "phone", "number": "918802790769"},
-            "answer_url": ["https://nexmo-community.github.io/ncco-examples/first_call_talk.json"]
+            "answer_url": ["https://gist.githubusercontent.com/uday1201/c86126967cc02c6551fc6cde1e1d5c1b/raw/4947aa34f1000e5f8c56f82ae354fe73a9b2ea8c/callback.json"]
         })
 
         return response
