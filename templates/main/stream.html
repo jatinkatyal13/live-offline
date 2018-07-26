@@ -1,17 +1,29 @@
 {% extends 'main/base.html' %}
 
 {% block body %}
+{% load add_css %}
 
-    <form action="" method="post">
+<h2> Add credentials to your livestream </h2>
+<br>
+<div class="well well-lg">
+	<div class="form-group">
+	    <form action="" method="post">
 
-        {% csrf_token %}
+	        {% csrf_token %}
 
-        <table>
-            {{ form.as_table }}
-        </table>
+	        {% for field in form %}
 
-        <button type="submit">Submit</button>
+	        	<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+	        	{{ field|addCss:"form-control" }}
 
-    </form>
+	        {% endfor %}
+
+	        <button type="submit">Submit</button>
+
+	    </form>
+	</div>
+</div>
+
+    
 
 {% endblock %}

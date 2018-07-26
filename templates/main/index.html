@@ -1,7 +1,20 @@
 {% extends 'main/base.html' %}
 
 {% block body %}
-
-    <h1> Welcome to our app </h1>
+<div  class="jumbotron">
+	<br>
+    <h1 style="text-align: center;"> Welcome to our app </h1>
+    <br>
+    <br>
+    <h3><b>Connecting online and offline communities together</b> </h3>
+    <br>
+    <h4>All across the globe, there are over 2.19 Billion Facebook users, and a major portion from the developing countries. It has served as a community for connecting people together. But in a developing nation like ours internet is not always accessible and that sometimes pose a challenge to people. Live-Offline lets you connect to Facebook Live streams, without connecting to the internet. Additionally, users that are not on Facebook can also be added by subscribing using their mobile numbers. To give an example, I'm part of the Facebook's developer community and they hold live events but if i am not able to attend it due to no internet connection, it can still give me an opportunity to not to miss out on anything. This can also be used to reach users in remote areas where there is limited internet connectivity.
+    </h4>
+    <br>
+    <a href="https://devpost.com/software/live-offline#updates"><strong> Devpost Submission </strong></a>
+    <br>
+    <br>
+    <p><a class="btn btn-primary btn-lg" href="{% url 'stream' %}#" role="button">Go to the demo</a></p>
+</div>
 
 {% endblock %}

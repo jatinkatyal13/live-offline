@@ -1,19 +1,21 @@
 {% extends 'main/base.html' %}
 
 {% block body %}
+<div class="well well-lg">
+	<h2> Listeners </h2>
+	    <ul class="list-group">
 
-    <ul>
+	        {% for subscriber in subscribers %}
 
-        {% for subscriber in subscribers %}
+	            <li class="list-group-item list-group-item-success">{{ subscriber }}</li>
 
-            <li>{{ subscriber }}</li>
+	        {% endfor %}
 
-        {% endfor %}
-
-    </ul>
-
+	    </ul>
+</div>
+<div class="embed-responsive embed-responsive-16by9">
     {% autoescape off %}
         {{ iframe }}
     {% endautoescape %}
-
+</div>
 {% endblock %}
