@@ -4,7 +4,13 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, FormView
 from django.views import View
 
+import nexmo
+
 from . import forms
+
+NEXMO_API_KEY = '95d36e70'
+
+NEXMO_PRIVATE_KEY = 'oxSUx4w7ZiKYvOIv'
 
 # Create your views here.
 
@@ -21,7 +27,7 @@ class Stream(FormView):
 
         if form.is_valid():
 
-            subscribers = form.cleaned_data['phone_numbers']
+            subscribers = form.cleaned_data['phone_numbers'].strip().split('\n')
 
             access_token = form.cleaned_data['authentication_token']
 
@@ -53,6 +59,17 @@ class Stream(FormView):
         print(resp)
         return str(json.loads(resp)['embed_html'])
 
+    def make_calls(self, subscribers):
+        client = nexmo.Client(application_id = '928639e5-2c69-459e-b760-430fd5974e99', private_key = 'config')
+
+        response = client.create_call({
+            "to": [ {"type": "phone", "number": "91{}".format(subscriber)} for subscriber in subscribers ],
+            "from": {"type": "phone", "number": "918802790769"},
+            "answer_url": ["https://nexmo-community.github.io/ncco-examples/first_call_talk.json"]
+        })
+
+        return response
+
     def post(self, request):
         try:
             subscribers, access_token, stream_id = self.extract_details()
@@ -63,6 +80,9 @@ class Stream(FormView):
                 'subscribers': subscribers,
                 'iframe': iframe
             }
+
+            print(self.make_calls(subscribers))
+
             return render(request, self.post_template_name, context)
 
         except Exception as e:
