@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+
+    <ul>
+
+        {% for subscriber in subscribers %}
+
+            <li>{{ subscriber }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+    {% autoescape off %}
+        {{ iframe }}
+    {% endautoescape %}
+
+{% endblock %}

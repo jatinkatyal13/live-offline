@@ -1,0 +1,9 @@
+env/
+.env
+
+*.sqlite3
+
+*.pyc
+*.sw[poc]
+
+staticfiles/
